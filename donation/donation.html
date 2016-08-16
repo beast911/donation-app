@@ -1,0 +1,32 @@
+<div class="container">
+  <h3>Welcome</h3>
+  <h4>Thank you for donating</h4> 
+  <form novalidate name="donationFormIs" id="donationForm" class="form-horizontal">
+    <div class="form-group" ng-class="{ 'has-error' : donationFormIs.userId.$invalid && !donationFormIs.userId.$pristine }">
+      <label class="col-sm-2 control-label">Your Email Address</label>
+      <div class="col-sm-10">
+        <input name="userId" ng-model="donation.fromUserId" class="form-control col-md-6" placeholder="Your Email Address" type="email" tabindex="1" required>
+        <p ng-show="donationFormIs.userId.$invalid && !donationFormIs.userId.$pristine" class="help-block">Email should be correct</p>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : donationFormIs.amount.$invalid && !donationFormIs.amount.$pristine }">
+      <label class="col-sm-2 control-label">Amount To Donate</label>
+      <div class="col-sm-10">
+        <input name="amount" ng-model="donation.amount" number class="form-control" placeholder="Amount to donate" type="number" min="1" max="100" tabindex="2" required>
+      </div>
+      <p class="help-block">Cannot exceed 100 units</p>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Please Select Currency</label>
+      <div class="col-sm-10">
+        <select class="form-control" tabindex="3" required ng-model="donation.currency" id="currency">
+          <option id="EUR" value="EUR">EUR</option>
+          <option id="USD" value="USD">USD</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <button ng-if="donationFormIs.$valid" class="btn btn-primary" ng-click="donate($event)" name="submit" type="submit" id="donate-submit" data-submit="...Sending">Donate</button>
+    </div>
+  </form>
+</div>
